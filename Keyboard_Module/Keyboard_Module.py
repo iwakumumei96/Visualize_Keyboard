@@ -29,8 +29,11 @@ class Keyboard_Module:
     def GetIndex(self, keycode):
         if keycode in self.keycodes:
             return self.keycodes.index(keycode)
-        else:
-            return -1
+        if keycode in self.active_codes:
+            return self.active_codes.index(keycode)
+        if keycode in self.inactive_codes:
+            return self.inactive_codes.index(keycode)
+        return -1
 
     def Update(self):
         self.UpdateActive()
